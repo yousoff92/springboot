@@ -1,4 +1,4 @@
-# REST CRUD Service
+# springboot-hibernate
 
 ## Introduction 
 1. This a sample of Spring Boot application for REST CRUD service.
