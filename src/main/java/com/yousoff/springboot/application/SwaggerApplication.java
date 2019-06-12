@@ -1,4 +1,4 @@
-package com.yousoff.rest.application;
+package com.yousoff.springboot.application;
 
 import java.util.Collections;
 
@@ -33,7 +33,7 @@ public class SwaggerApplication {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.yousoff.rest"))
+				.apis(RequestHandlerSelectors.basePackage("com.yousoff.springboot.controller"))
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(apiInfo());
@@ -41,7 +41,7 @@ public class SwaggerApplication {
 	
 	private ApiInfo apiInfo() {
 	     return new ApiInfo(
-	       "Sample REST CRUD API", 
+	       "Sample SpringBoot CRUD API", 
 	       null, 
 	       "v 1.0.0", 
 	       "Open for non-commercial use.", 

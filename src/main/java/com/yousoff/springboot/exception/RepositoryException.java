@@ -1,4 +1,4 @@
-package com.yousoff.rest.exception;
+package com.yousoff.springboot.exception;
 
 public class RepositoryException extends Exception {
 

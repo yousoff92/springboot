@@ -1,4 +1,4 @@
-package com.yousoff.rest.test;
+package com.yousoff.springboot.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -9,18 +9,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yousoff.rest.application.MainApplication;
-import com.yousoff.rest.controller.ItemController;
-import com.yousoff.rest.dao.ItemDao;
-import com.yousoff.rest.model.Item;
+import com.yousoff.springboot.application.MainApplication;
+import com.yousoff.springboot.controller.ItemController;
+import com.yousoff.springboot.dao.ItemDao;
+import com.yousoff.springboot.model.Item;
 
 /*
  * Reference :
@@ -40,24 +42,23 @@ import com.yousoff.rest.model.Item;
  *
  */
 @SpringApplicationConfiguration(classes = MainApplication.class)
-@WebAppConfiguration
 @RunWith(MockitoJUnitRunner.class)
-@IntegrationTest("server.port:0")
+//@IntegrationTest("server.port:0")
+@WebAppConfiguration
 public class ControllerTest {
 
 	private MockMvc mockMvc;
 
 	@Mock
-	private ItemDao repositoryMock;
+	private ItemDao itemDaoMock;
 
 	@Mock
 	private ItemController controllerMock;
-
+	
 	@Before
 	public void setUp() {
-		controllerMock = new ItemController(repositoryMock);
+		controllerMock = new ItemController(itemDaoMock);
 		mockMvc = MockMvcBuilders.standaloneSetup(controllerMock).build();
-
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.yousoff.rest.controller;
+package com.yousoff.springboot.controller;
 
 import java.util.List;
 
@@ -14,14 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yousoff.rest.dao.ItemDao;
-import com.yousoff.rest.exception.RepositoryException;
-import com.yousoff.rest.model.Item;
-import com.yousoff.rest.model.Response;
+import com.yousoff.springboot.dao.ItemDao;
+import com.yousoff.springboot.exception.RepositoryException;
+import com.yousoff.springboot.model.Item;
+import com.yousoff.springboot.model.Response;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 /**
  * 
@@ -34,13 +36,14 @@ import io.swagger.annotations.ApiParam;
 public class ItemController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
-	private ItemDao itemDao;
-
+	
 	@Autowired
+	private ItemDao itemDao;
+	
 	public ItemController(ItemDao itemDao) {
 		this.itemDao = itemDao;
 	}
-
+	
 	/**
 	 * Create an item. Created date will always be current date.
 	 * 
@@ -202,11 +205,7 @@ public class ItemController {
 						HttpStatus.OK);
 			}
 			
-		} catch (NumberFormatException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<Response>(new Response("Failed to delete an item.", "failed", item),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		} catch (RepositoryException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<Response>(new Response("Failed to delete an item.", "failed", item),
 					HttpStatus.INTERNAL_SERVER_ERROR);
