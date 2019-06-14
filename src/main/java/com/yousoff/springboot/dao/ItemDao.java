@@ -29,6 +29,8 @@ import com.yousoff.springboot.model.Item;
 public class ItemDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(ItemDao.class);
+	
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	public int create(Item item) throws RepositoryException {

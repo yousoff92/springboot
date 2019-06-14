@@ -22,8 +22,7 @@ import com.yousoff.springboot.model.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -33,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/rest/v1")
 @Api(description = "Controller to create, read, update and delete item in database.")
+@NoArgsConstructor
 public class ItemController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
